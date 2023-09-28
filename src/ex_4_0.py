@@ -13,8 +13,21 @@ def get_shutdown_events(logfile):
     """
     Your docstring here.  Replace the pass keyword below with your implementation
     """
-    pass
 
+    shutdown_events = []
+
+    try:
+        with open(FILENAME, 'r') as file:
+            for line in file:
+                if "Shutdown initiated." in line:
+                    shutdown_events.append(line.strip())
+
+    except FileNotFoundError:
+        print(f"File not found: {logfile}")
+    except Exception as e:
+        print(f"An error occurred:{str(e)}")
+
+    return shutdown_events
 
 # >>>> The code below will call your function and print the results
 if __name__ == "__main__":
