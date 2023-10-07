@@ -8,6 +8,8 @@ except ImportError:
 FILENAME = get_data_file_path('messages.log')
 # >>>> DO NOT MODIFY CODE ABOVE <<<<
 
+import os
+
 
 def get_shutdown_events(logfile):
     """
@@ -17,7 +19,7 @@ def get_shutdown_events(logfile):
     shutdown_events = []
 
     try:
-        with open(FILENAME, 'r') as file:
+        with open(logfile, 'r') as file:
             for line in file:
                 if "Shutdown initiated." in line:
                     shutdown_events.append(line.strip())
